@@ -1,6 +1,16 @@
+"use client";
+
 import React from "react";
+import { useState } from "react";
 
 export default function Login() {
+  const [username, setUsername] = useState("");
+
+  const onClickLogIn = () => {};
+
+  const onClickToggle = () => {};
+
+  const onClickLogOut = () => {};
   return (
     <div>
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -15,7 +25,11 @@ export default function Login() {
                 Username
               </span>
             </label>
-            <input className="h-8 w-64 md:w-96 sm:p-2 text-black" />
+            <input
+              className="h-8 w-64 md:w-96 sm:p-2 text-black"
+              type="text"
+              onChange={(e) => setUsername(e.target.value)}
+            />
 
             <label>
               <span className="mt-2 block text-xl font-medium text-white-700">
