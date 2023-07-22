@@ -2,11 +2,18 @@
 
 import React from "react";
 import { useState } from "react";
+import { logIn, logOut } from "@/redux/features/auth-slice";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
 
 export default function Login() {
   const [username, setUsername] = useState("");
 
-  const onClickLogIn = () => {};
+  const dispatch = useDispatch<AppDispatch>();
+
+  const onClickLogIn = () => {
+    dispatch(logIn(username));
+  };
 
   const onClickToggle = () => {};
 
@@ -42,6 +49,7 @@ export default function Login() {
               <button
                 type="button"
                 className="w-24 mt-2 p-2 rounded-md border-white bg-[#0a1642]"
+                onClick={onClickLogIn}
               >
                 Log in
               </button>
