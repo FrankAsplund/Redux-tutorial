@@ -1,17 +1,14 @@
 "use client";
 
-import Login from "@/components/LogIn";
-import { useAppSelector } from "@/redux/store";
+import Link from "next/link";
 
-export default function Home() {
-  const username = useAppSelector((state) => state.authReducer.value.username);
-  const password = useAppSelector((state) => state.authReducer.value.password);
-
+export default function Start() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-[#0a133e]">
-      <h1>Username: {username} </h1>
-      <h1>Password: {password} </h1>
-      <Login />
+      <div>
+        <h1>Welcome</h1>
+        <Link href="/login"> Log In</Link>
+      </div>
     </main>
   );
 }
