@@ -8,16 +8,19 @@ import { AppDispatch } from "@/redux/store";
 
 export default function Login() {
   const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const dispatch = useDispatch<AppDispatch>();
 
   const onClickLogIn = () => {
-    dispatch(logIn(username));
+    dispatch(logIn({ username, password }));
   };
 
   const onClickToggle = () => {};
 
-  const onClickLogOut = () => {};
+  const onClickLogOut = () => {
+    dispatch(logOut());
+  };
   return (
     <div>
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -43,7 +46,10 @@ export default function Login() {
                 Password
               </span>
             </label>
-            <input className="h-8 w-64 md:w-96 sm:p-2 text-black" />
+            <input
+              className="h-8 w-64 md:w-96 sm:p-2 text-black"
+              onChange={(e) => setPassword(e.target.value)}
+            />
 
             <div className="flex-col items-center mt-2">
               <button
@@ -52,6 +58,13 @@ export default function Login() {
                 onClick={onClickLogIn}
               >
                 Log in
+              </button>
+              <button
+                type="button"
+                className="w-24 mx-2 p-2 rounded-md border-white bg-[#0a1642]"
+                onClick={onClickLogOut}
+              >
+                Log out
               </button>
               <button
                 type="button"

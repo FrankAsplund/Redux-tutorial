@@ -7,6 +7,7 @@ type InitialState = {
 type AuthState = {
   isAuth: boolean;
   username: string;
+  password: string;
   uid: string;
   isModerator: boolean;
 };
@@ -15,6 +16,7 @@ const initialState = {
   value: {
     isAuth: false,
     username: "",
+    password: "",
     uid: "",
     isModerator: false,
   } as AuthState,
@@ -28,11 +30,15 @@ export const auth = createSlice({
       return initialState;
     },
 
-    logIn: (state, action: PayloadAction<string>) => {
+    logIn: (
+      state,
+      action: PayloadAction<{ username: string; password: string }>
+    ) => {
       return {
         value: {
           isAuth: true,
-          username: action.payload,
+          username: action.payload.username,
+          password: action.payload.password,
           uid: "123",
           isModerator: false,
         },
