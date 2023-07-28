@@ -8,7 +8,7 @@ import { AppDispatch } from "@/redux/store";
 import { useAppSelector } from "@/redux/store";
 import { useRouter } from "next/navigation";
 
-export default function Login() {
+export default function Home() {
   const username = useAppSelector((state) => state.authReducer.value.username);
 
   const dispatch = useDispatch<AppDispatch>();

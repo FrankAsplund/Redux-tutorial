@@ -44,8 +44,18 @@ export const auth = createSlice({
         },
       };
     },
+
+    signUp: (
+      state,
+      action: PayloadAction<{ username: string; password: string }>
+    ) => {
+      // Here, you can add logic to save the user profile to a backend or a database
+      // For this example, we'll simply update the state with the provided username and password
+      state.value.username = action.payload.username;
+      state.value.password = action.payload.password;
+    },
   },
 });
 
-export const { logIn, logOut } = auth.actions;
+export const { logIn, logOut, signUp } = auth.actions;
 export default auth.reducer;

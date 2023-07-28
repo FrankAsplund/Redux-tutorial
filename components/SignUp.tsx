@@ -2,40 +2,24 @@
 
 import React from "react";
 import { useState } from "react";
-import { logIn } from "@/redux/features/auth-slice";
-import { useAppSelector } from "@/redux/store";
+import { signUp } from "@/redux/features/auth-slice";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/redux/store";
 import { useRouter } from "next/navigation";
+import { AppDispatch } from "@/redux/store";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const dispatch = useDispatch<AppDispatch>();
+
   const router = useRouter();
 
-  const usernameLogin = useAppSelector(
-    (state) => state.authReducer.value.username
-  );
-  const passwordLogIn = useAppSelector(
-    (state) => state.authReducer.value.password
-  );
-
-  const isAuth = useAppSelector((state) => state.authReducer.value.isAuth);
-
-  /* const dispatch = useDispatch<AppDispatch>(); */
-
-  const onClickLogIn = () => {
-    if (username === usernameLogin && password === passwordLogIn) {
-      isAuth === true;
-      console.log(isAuth);
-    } else {
-      console.log(isAuth);
-    }
-  };
-
-  const signUpPage = () => {
-    router.push("/signup");
+  const onClickSignUp = () => {
+    dispatch(signUp({ username, password }));
+    setTimeout(() => {
+      router.push("/login");
+    }, 1000);
   };
 
   return (
@@ -44,7 +28,7 @@ export default function Login() {
         <div className="container px-4  items-center justify-between">
           <div className="bg-[#1f2f6b] rounded-md mt-4 border-white sm:p-8 sm:mx-8 py-8">
             <h2 className="flex justify-center text-3xl mt-4 mb-6 font-bold tracking-tight text-white sm:text-4xl">
-              Please log in
+              Please create your account
             </h2>
 
             <label>
@@ -71,17 +55,10 @@ export default function Login() {
             <div className="flex-col items-center mt-2">
               <button
                 type="button"
-                className="w-24 mt-2 p-2 rounded-md border-white bg-[#0a1642]"
-                onClick={onClickLogIn}
-              >
-                Log in
-              </button>
-              <button
-                type="button"
                 className="w-24 mx-2 p-2 rounded-md border-white bg-[#0a1642]"
-                onClick={signUpPage}
+                onClick={onClickSignUp} // Call the signUp function when the "Sign Up" button is clicked
               >
-                Sign Up
+                Create Account
               </button>
             </div>
           </div>
