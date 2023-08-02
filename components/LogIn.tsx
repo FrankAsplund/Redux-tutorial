@@ -23,14 +23,14 @@ export default function Login() {
 
   const isAuth = useAppSelector((state) => state.authReducer.value.isAuth);
 
-  /* const dispatch = useDispatch<AppDispatch>(); */
+  const dispatch = useDispatch<AppDispatch>();
 
   const onClickLogIn = () => {
-    if (username === usernameLogin && password === passwordLogIn) {
-      isAuth === true;
-      console.log(isAuth);
+    if (username == usernameLogin && password == passwordLogIn) {
+      dispatch(logIn({ username, password }));
     } else {
       console.log(isAuth);
+      alert("Wrong username and/or password. Try again.");
     }
   };
 

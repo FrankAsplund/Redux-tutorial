@@ -18,6 +18,10 @@ export default function Home() {
   const router = useRouter();
 
   React.useEffect(() => {
+    console.log(isAuth);
+  });
+
+  React.useEffect(() => {
     if (!isAuth) {
       router.push("/");
     }
@@ -32,8 +36,12 @@ export default function Home() {
         <div className="container px-4  items-center justify-between">
           <div className="bg-[#1f2f6b] rounded-md mt-4 border-white sm:p-8 sm:mx-8 py-8">
             <h2 className="flex justify-center text-3xl mt-4 mb-6 font-bold tracking-tight text-white sm:text-4xl">
-              Welcome {username}
+              Welcome {username}. You are logged in.
             </h2>
+
+            <h4 className="flex justify-center text-3xl mt-4 mb-6 font-bold tracking-tight text-white sm:text-4xl">
+              Now you can start posting.
+            </h4>
 
             <div className="flex-col items-center mt-2">
               <button
